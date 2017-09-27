@@ -95,7 +95,7 @@ public class LoginServlet extends HttpServlet {
         System.out.print(user.getUsername()+"\n");
         System.out.print(user.getPassword()+"\n");
         String userJson = JSON.toJSONString(user);
-        System.out.print("dasda:"+ userJson+"\n");
+        System.out.print("post:"+ userJson+"\n");
         OutputStream out = response.getOutputStream();  
         out.write(userJson.getBytes("UTF-8"));  
         out.flush();
