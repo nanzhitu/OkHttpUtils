@@ -22,12 +22,14 @@ public class MainActivity extends AppCompatActivity {
     Button post_asyn;
     Button post_sync;
     Button post_Asyn_file;
-    Button getPost_Asyn_file_data;
-    public static final String IP = "http://192.168.1.101:8080";
+    Button post_Asyn_file_data;
+    Button get_asyn_txt;
+    public static final String IP = "http://192.168.0.105:8080";
     public static final String PROJECT = "OkhttpServerDemo";
     public static final String URL_LOGIN = IP + "/"+PROJECT+"/"+"LoginServlet";
     public static final String URL_FILE = IP + "/"+PROJECT+"/"+"FileServlet";
     public static final String FILE = "/qqq.PNG";
+    public static final String URL_TXT = IP + "/"+PROJECT+"/"+"hello.txt";
     public static final String FILEKEY = "file";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +41,8 @@ public class MainActivity extends AppCompatActivity {
         post_asyn = (Button)findViewById(R.id.button3);
         post_sync = (Button)findViewById(R.id.button4);
         post_Asyn_file = (Button)findViewById(R.id.button5);
-        getPost_Asyn_file_data = (Button)findViewById(R.id.button6);
+        post_Asyn_file_data = (Button)findViewById(R.id.button6);
+        get_asyn_txt = (Button)findViewById(R.id.button7);
         get_asyn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -150,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        getPost_Asyn_file_data.setOnClickListener(new View.OnClickListener() {
+        post_Asyn_file_data.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 File file = new File(getFilesDir().getPath()+FILE);
@@ -174,6 +177,23 @@ public class MainActivity extends AppCompatActivity {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+            }
+        });
+
+        get_asyn_txt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getInstance().getAsyn(URL_TXT, new Callback() {
+                    @Override
+                    public void onFailure(Request request, IOException e) {
+                        Log.d("error","error:"+request.body().toString());
+                    }
+
+                    @Override
+                    public void onResponse(Response response) throws IOException {
+                        Log.d("result",URL_TXT+":"+response.body().string());
+                    }
+                });
             }
         });
     }

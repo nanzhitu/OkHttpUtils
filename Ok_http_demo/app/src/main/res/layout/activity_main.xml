@@ -68,4 +68,13 @@
         android:layout_alignBaseline="@+id/button5"
         android:layout_alignBottom="@+id/button5"
         android:layout_alignStart="@+id/button3" />
+
+    <Button
+        android:text="异步下载小文件"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button5"
+        android:layout_alignEnd="@+id/button4"
+        android:layout_marginTop="27dp"
+        android:id="@+id/button7" />
 </RelativeLayout>

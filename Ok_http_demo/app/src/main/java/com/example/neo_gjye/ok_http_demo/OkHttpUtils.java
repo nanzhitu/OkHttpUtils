@@ -212,13 +212,12 @@ public class OkHttpUtils {
                 fileBody = RequestBody.create(MediaType.parse(guessMimeType(fileName)), file);
                 Log.d("All","filekey is :   "+ fileKeys[i]+ "fileName is:" + fileName);
                 //TODO 根据文件名设置contentType
-                /*builder.addPart(Headers.of("Content-Disposition",
+                builder.addPart(Headers.of("Content-Disposition",
                         "form-data; name=\"" + fileKeys[i] + "\"; filename=\"" + fileName + "\""),
-                        fileBody);*/
-                builder.addFormDataPart(fileKeys[i],fileName,fileBody);
+                        fileBody);
+                //builder.addFormDataPart(fileKeys[i],fileName,fileBody); //equal  builder.addPart(Headers.of())
             }
         }
-
 
         RequestBody requestBody = builder.build();
         return new Request.Builder()
